@@ -52,6 +52,13 @@ services:
           - "8026:8025"
     redis:
         image: redis:latest
+    rabbitmq:
+      image: rabbitmq:3.8-management-alpine
+      ports:
+        - "15672:15672"
+        - "5672:5672"
+      volumes:
+        - rabbitmqdata:/var/lib/rabbitmq
     elasticsearch:
       image: elasticsearch:7.9.3
       ports:
