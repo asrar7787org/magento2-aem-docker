@@ -1,5 +1,12 @@
 # Changelog
 
+## [3.0.0] - 2020-01-06
+- Added Varnish container.
+- Updated Dockerfiles for nginx, php containers.
+- Updated docker-compose.yml with relevant services.
+- Updated nginx, db, varnish, mailhog service containers' host port address 
+  allocation to mitigate conflicts with existing services. 
+
 ## [2.0.5] - 2020-02-06
 ### Added
 - Added SSL configuration to nginx config

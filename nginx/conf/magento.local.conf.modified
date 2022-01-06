@@ -1,52 +1,11 @@
 server {
     listen 443 ssl;
     listen [::]:443 ssl;
-    server_name www.magento.local;
-
-    ssl_certificate /etc/nginx/ssl/magento.local.pem;
-    ssl_certificate_key /etc/nginx/ssl/magento.local-key.pem;
-
-    return 301 https://magento.local$request_uri;
-}
-
-server {
-    listen 443 ssl;
-    listen [::]:443 ssl;
+    ssl_certificate /etc/nginx/ssl/magento.pem;
+    ssl_certificate_key /etc/nginx/ssl/magento.key;
     server_name magento.local;
 
-    ssl_certificate /etc/nginx/ssl/magento.local.pem;
-    ssl_certificate_key /etc/nginx/ssl/magento.local-key.pem;
-
-    location / {
-        # Change to your host IP address
-        proxy_pass http://192.168.0.21:6091;
-        proxy_set_header Host $http_host;
-        proxy_set_header X-Forwarded-Host $http_host;
-        proxy_set_header X-Real-IP $remote_addr;
-        proxy_set_header X-Forwarded-For $proxy_add_x_forwarded_for;
-        proxy_set_header X-Forwarded-Proto https;
-        proxy_set_header X-Forwarded-Port 443;
-
-        proxy_buffers 4 256k;
-        proxy_buffer_size 128k;
-        proxy_busy_buffers_size 256k;
-
-        # Fixes issue: varnish upstream prematurely closed connection
-        proxy_connect_timeout 10080s;
-        proxy_send_timeout 10080;
-        proxy_read_timeout 10080;
-        proxy_redirect off;
-        proxy_request_buffering off;
-        proxy_buffering off;
-    }
-}
-
-server {
-    listen 8080;
-    listen [::]:8080;
-    server_name magento.local;
-
-    set $MAGE_MODE developer;
+    set $MAGE_MODE production;
     set $MAGE_ROOT /var/www/magento;
     root $MAGE_ROOT/pub;
 
@@ -54,9 +13,8 @@ server {
     autoindex off;
     charset UTF-8;
     error_page 404 403 = /errors/404.php;
-
     #add_header "X-UA-Compatible" "IE=Edge";
-    fastcgi_buffers 16 16k;
+    fastcgi_buffers 16 16k; 
     fastcgi_buffer_size 32k;
 
     # PHP entry point for setup application
@@ -200,11 +158,6 @@ server {
         fastcgi_index  index.php;
         fastcgi_param  SCRIPT_FILENAME  $document_root$fastcgi_script_name;
         include        fastcgi_params;
-
-        # Multisite configuration
-        fastcgi_param MAGE_RUN_TYPE store;
-        fastcgi_param MAGE_RUN_CODE default;
-        # END - Multisite customization
     }
 
     gzip on;

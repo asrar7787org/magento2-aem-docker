@@ -24,21 +24,12 @@ RUN apt-get -qq install -y \
     && docker-php-ext-configure gd --with-jpeg --with-freetype \
     && docker-php-ext-install -j$(nproc) intl xsl gd zip pdo_mysql opcache soap bcmath json iconv pcntl sockets
 
-# Install Xdebug
-RUN pecl install -o -f redis apcu xdebug \
-    && docker-php-ext-enable redis apcu xdebug
-
 # Configure MailHog
 RUN go get github.com/mailhog/mhsendmail
 RUN echo 'sendmail_path="/root/go/bin/mhsendmail --smtp-addr=mailhog:1025"' >> /usr/local/etc/php/conf.d/mail.ini
 
-# Configure memory limit and Xdebug settings
-ADD ./conf/php.ini $PHP_INI_DIR/conf.d/zz-php.ini
-ADD ./conf/php-xdebug.ini $PHP_INI_DIR/conf.d/zz-xdebug.ini
-
-ADD ./bin/docker-entrypoint.sh /docker-entrypoint.sh
-RUN ["chmod", "+x", "/docker-entrypoint.sh"]
-ENTRYPOINT ["/docker-entrypoint.sh"]
+# Set memory limit
+RUN echo "memory_limit=4G" >> /usr/local/etc/php/conf.d/memory_limit.ini
 
 # Install Composer
 RUN cd /usr/src && curl https://getcomposer.org/download/1.10.19/composer.phar --output composer.phar | php
