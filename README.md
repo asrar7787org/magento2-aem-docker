@@ -149,3 +149,7 @@ To configure Xdebug in PHPStorm go to
 ### To debug CLI commands
 Add XDEBUG_CONFIG=idekey=phpstorm before any commands 
 e.g `XDEBUG_CONFIG=idekey=phpstorm bin/magento cache:flush`
+
+### Credits
+- [Igor](https://github.com/isydorenko)
+- [Nithin](https://github.com/nithincninan/)
