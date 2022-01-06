@@ -60,7 +60,7 @@ services:
       volumes:
         - rabbitmqdata:/var/lib/rabbitmq
     elasticsearch:
-      image: elasticsearch:7.9.3
+      build: ./es
       ports:
         - "9204:9200"
         - "9304:9300"
