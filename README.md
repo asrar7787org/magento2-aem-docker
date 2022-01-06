@@ -15,11 +15,6 @@ Using this docker project you can initiate a new project or import the existent 
 5. ElasticSearch
 6. Redis
 
-### PHP Xdebug
-Xdebug is installed during docker compose. But, due to heavy performance
-implications by default this is kept disabled.
-However, to enable Xdebug, in `.env` file set `DISABLE_XDEBUG=false`.
-
 ## How to create SSL certificates for local machine?
 1. In Mac OS, follow this guide to create local SSL certificates
    https://matthewhoelter.com/2019/10/21/how-to-setup-https-on-your-local-development-environment-localhost-in-minutes.html
@@ -132,3 +127,25 @@ If you need to change PHP version from 7.3 to 7.4 you need to update
 
 3. Build and run all docker components:
    `docker-compose up --build -d`
+
+## Xdebug Configuration
+Xdebug is installed during docker compose. But, due to heavy performance
+implications by default this is kept disabled.
+However, to enable Xdebug, in `.env` file set `DISABLE_XDEBUG=false`.
+
+To configure Xdebug in PHPStorm go to 
+- Files > Settings > PHP > Servers.
+- Add new server by clicking the `+` icon.
+- Name: magento.local
+- Host: magento.local:8443
+- Port: 8443
+
+- Check `Use path mappings` checkbox.
+- Find the folder named `magento` and set the `Absolute path on the server` 
+  to /var/www/magento/
+
+- Start listening to the PHP Debug connecitons.
+
+### To debug CLI commands
+Add XDEBUG_CONFIG=idekey=phpstorm before any commands 
+e.g `XDEBUG_CONFIG=idekey=phpstorm bin/magento cache:flush`
