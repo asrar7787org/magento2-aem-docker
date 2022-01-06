@@ -77,6 +77,13 @@ php bin/magento setup:install \
         --currency=USD \
         --timezone=America/Chicago \
         --skip-db-validation \
+        --elasticsearch-host=elasticsearch \
+        --elasticsearch-port=9200 \
+        --amqp-host=rabbitmq \
+        --amqp-port=5672 \
+        --amqp-user=guest \
+        --amqp-password=guest \
+        --amqp-virtualhost="/" \
         --elasticsearch-host=elasticsearch 
         --elasticsearch-port=9200
     && chown -R www-data:www-data .
