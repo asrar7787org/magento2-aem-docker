@@ -68,3 +68,4 @@ services:
         "discovery.type": "single-node"
 volumes:
     magento:
+    rabbitmqdata:
