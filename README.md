@@ -27,12 +27,12 @@ follow below steps:
 2. In `nginx/Dockerfile` uncomment the lines **after** it says:
 > Uncomment the following lines if you want to generate SSl certificates during docker compose build
 
-2.2 Rename existing `nginx/conf/magento.local.conf` and
+2.1 Rename existing `nginx/conf/magento.local.conf` and
 `nginx/conf/magentodede.local.conf` files to some different names.
 
-2.3 Rename `nginx/conf/magento.local.conf.yacf` to `nginx/conf/magento.local.conf`
+2.2 Rename `nginx/conf/magento.local.conf.yacf` to `nginx/conf/magento.local.conf`
 
-2.4 Rename `nginx/conf/magentodede.local.conf.yacf` to `nginx/conf/magentodede.local.conf`
+2.3 Rename `nginx/conf/magentodede.local.conf.yacf` to `nginx/conf/magentodede.local.conf`
 
 
 ## Install Magento
