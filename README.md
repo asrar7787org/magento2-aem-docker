@@ -128,7 +128,7 @@ You're able to connect to MySQL using "0.0.0.0" as host, port should be
 ## Using MailHog for sending emails
 You're able to find all the email you send from Magento instance on http://localhost:8026/
 
-## Switch to PHP 7.x
+## Switch to PHP 7.3 (Deprecated and not recommended)
 1. Shutdown your current docker instance.
 2. Change PHP version in ./php/Docker file to needed version.
 
