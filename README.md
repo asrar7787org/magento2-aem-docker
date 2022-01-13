@@ -4,8 +4,8 @@ Using this docker project you can initiate a new project or import the existent 
 
 ## Preparation
 1. Open https://www.docker.com/
-1. Register new account or login with an existent one
-1. Download and install docker app
+2. Register new account or login with an existent one
+3. Download and install docker app
 
 ## What services are inside this docker setup?
 1. NGINX
@@ -14,15 +14,26 @@ Using this docker project you can initiate a new project or import the existent 
 4. Varnish
 5. ElasticSearch
 6. Redis
+7. RabbitMQ
+8. Mailhog
 
 ## How to create SSL certificates for local machine?
 1. In Mac OS, follow this guide to create local SSL certificates
    https://matthewhoelter.com/2019/10/21/how-to-setup-https-on-your-local-development-environment-localhost-in-minutes.html
 
-OR
+OR, To create and use SSL certificates created by nginx/Dockerfile 
+follow below steps:
 
 2. In `nginx/Dockerfile` uncomment the lines **after** it says:
->Uncomment the following lines if you want to generate SSl certificates during docker compose build
+> Uncomment the following lines if you want to generate SSl certificates during docker compose build
+
+2.2 Rename existing `nginx/conf/magento.local.conf` and
+`nginx/conf/magentodede.local.conf` files to some different names.
+
+2.3 Rename `nginx/conf/magento.local.conf.yacf` to `nginx/conf/magento.local.conf`
+
+2.4 Rename `nginx/conf/magentodede.local.conf.yacf` to `nginx/conf/magentodede.local.conf`
+
 
 ## Install Magento
 1. Import "magento2-docker" repository

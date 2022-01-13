@@ -1,7 +1,7 @@
 *
 !nginx
 !php
-!vaarnish
+!varnish
 !es
 !.env
 !CHANGELOG.md
