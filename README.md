@@ -128,17 +128,6 @@ You're able to connect to MySQL using "0.0.0.0" as host, port should be
 ## Using MailHog for sending emails
 You're able to find all the email you send from Magento instance on http://localhost:8026/
 
-## Switch to PHP 7.3 (Deprecated and not recommended)
-1. Shutdown your current docker instance.
-2. Change PHP version in ./php/Docker file to needed version.
-
-Example:
-If you need to change PHP version from 7.3 to 7.4 you need to update
-`FROM php:7.3-fpm-buster` to `FROM php:7.4-fpm-buster`
-
-3. Build and run all docker components:
-   `docker-compose up --build -d`
-
 ## Xdebug Configuration
 Xdebug is installed during docker compose. But, due to heavy performance
 implications by default this is kept disabled.
